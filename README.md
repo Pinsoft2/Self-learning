@@ -1,2 +1,1 @@
-# Self-learning
-# Self-learning
+Call me a try hard but this is real passion
