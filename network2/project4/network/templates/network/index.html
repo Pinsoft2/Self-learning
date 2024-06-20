@@ -1,0 +1,62 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+
+<div class="creatPost">
+    {% if user.is_authenticated %}
+    <h4>Create New Post</h4>
+    <form action="{% url 'create_post' %}" method="post" name="create_post_form">
+        {% csrf_token %}
+        <textarea placeholder="New post" name="new_post_content" rows="10" cols="120"></textarea><br>
+        Image Link Url: <br>
+        <input class="form-control" type="url" name="image_url" id="img_url"><br>
+        <button type="submit" class="btn btn-primary"> Create Post </button>
+    </form>
+    {% endif %}
+</div>
+{% comment %} list of posts for people that users follow {% endcomment %}
+<div class="PostSummary">
+    {% if user.is_authenticated %}
+        {% for post in page_obj %}
+    <ul class="posts">
+        <a id="profile_link" href="{% url 'profile' user_id=post.user_id %}" >{{post.user}}</a><br>
+        <img src="{{ post.image_url }}" id="post_img"><br>
+        {{post.new_post_content}}<br>
+        Posted on: {{post.created_time}}<br>
+
+        <form action="{% url 'like_post' post_id=post.id %}" method="post" name="like_form">
+            {% csrf_token %}
+            <button id="like_button_{{post.id}}" data-user-id="{{user.id}}">&#10084;</button>
+            <span id="like_count_{{ post.id }}"> {{post.liked_by.count}} </span>
+        </form>
+
+        <br>
+    </ul>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+<div class="pagination">
+<span class="step-links">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+</span>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/newlikes.js' %}"></script>
+{% endblock %}

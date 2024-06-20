@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div >
+    <h2>Active Listings</h2>
+    {% if user.is_authenticated %}
+
+    {% for i in view.listings %}
+        {% if i.status == 1 %}
+    <li>
+    <a href='{% url "listing" i.pk %}'>
+    Name:  {{ i.title }}
+    Starting bid:   {{i.starting_bid}}
+    </a>
+    </li>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+{% endblock %}
+</div>

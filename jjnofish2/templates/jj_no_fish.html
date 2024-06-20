@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .main {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input[type="file"],
+        input[type="text"],
+        input[type="submit"] {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type="file"] {
+            background-color: #ffc9f5;
+            color: darkblue;
+        }
+
+        input[type="text"] {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            background-color: #ff75e6;
+            color: white;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff5ac7;
+        }
+
+        table {
+            margin: 10px;
+            padding: 30px;
+            background: #ffc9f5;
+            color: black;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #ff75e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Document Editor</h1>
+        <form method="post" enctype="multipart/form-data" name= "Doc_form" action="{% url 'jj_no_fish' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>
+                        <h2>No fish allowed! >w< <p style="font-size:80">&#128110;</p></h2>
+                        <input type="file" name="document" accept=".docx">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Replace Words</h2>
+                        <label for="old_word">Old Word:</label>
+                        <input type="text" name="old_word" value="{{ old_word }}"><br><br>
+                        <label for="new_word">New Word:</label>
+                        <input type="text" name="new_word" value="{{ new_word }}"><br><br>
+                        <input type="submit" name="action" value="Upload & Replace">
+                    </td>
+                </tr>
+                {% if upload_completed %}
+                <tr>
+                    <td colspan="2">
+                        <p style="color: green;">File upload and replace successful!</p>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2">
+                        <h2>Export Document</h2>
+
+                        <input type="submit" name="action" value="Export">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

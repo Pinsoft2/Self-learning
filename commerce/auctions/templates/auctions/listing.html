@@ -1,0 +1,82 @@
+
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2> Listing detail</h2>
+{% if user.is_authenticated %}
+
+    <h1>Name:  {{ object.title }}</h1>
+
+    <div class="box">
+        <img src="{{ object.image_url }}" >
+    </div>
+    <h3>
+    owner: {{ object.user.username }} <br>
+    Starting bid:   {{ object.starting_bid}}<br>
+    # of bids: {{ bid_count }}<br>
+    highest bid: ${{ max_bid }}
+    </h3>
+
+    {% if object.status == 1 %}
+
+    <div class="bid">
+        <form action="{% url 'bid' id=object.id %}" method="POST">
+     {% csrf_token %}
+        <input type="number" placeholder="0.00" name="bid_price"></input>
+        <button type="submit" > Place Bid </button>
+    </form>
+
+    {% if Bid_failure is False %}
+    <h3 style="color:green">  Bid submitted, thank you! </h3>
+    {%endif %}
+     {% if Bid_failure is True %}
+     <h3 style="color:red"> Please submit a higher valid bid value </h3>
+    {% endif %}
+    </div>
+
+    <h3>
+    Category: {{ object.category}}<br>
+    Created Time: {{ object.created_time}}<br>
+    Description: {{ object.description}} </h3>
+    Comments:
+       <h4>
+    {% for comment in all_comment_content %}
+        User {{ comment.user_id }} : {{ comment.comment_content }}
+        <br>
+    {% endfor %}
+       </h4>
+       <form action="{% url 'comment' id=object.id %}" method="POST">
+        {% csrf_token %}
+           <input type="text" name="comment_content"></input>
+           <button type="submit" > Add Comment </button>
+       </form>
+       <br>
+    <div class="button-container" style="display: flex">
+    <a href="/create_listing"><button style="margin-right: 20px" class="btn btn-success"> Create Listing </button></a>
+
+        {% if isListingInWatchlist %}
+            <form action="{% url 'removeWatchlist' id=object.id %}" method="POST">
+            {% csrf_token %}
+            <button style="margin-right: 20px" type="submit" class="btn btn-danger"> Remove From Watchlist </button>
+            </form>
+        {% endif %}
+        {% if not isListingInWatchlist %}
+            <form action="{% url 'addWatchlist' id=object.id %}" method="POST">
+            {% csrf_token %}
+            <button style="margin-right: 20px" type="submit" class="btn btn-success"> Add To Watchlist </button>
+            </form>
+        {% endif %}
+
+        <form action="{% url 'close' id=object.id %}" method="POST">
+        {% csrf_token %}
+        <button style="margin-right: 20px" type="submit" class="btn btn-danger"> Close </button>
+        </form>
+
+
+</div>
+    {% endif %}
+    {% if object.status == 0 %}
+    <marquee behavior="scroll" direction="right" scrollamount="10"> <h1 style="color:red;"> This item is now closed. </h1> </marquee>
+    {% endif %}
+{% endif %}
+{% endblock %}

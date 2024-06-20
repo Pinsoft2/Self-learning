@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+John Smith
+Sen Lakmi
+Sono Octonot
+
+=======
+John Smith
+Sen Lakmi
+Sono Octonot
+
+>>>>>>> 6e4bf84439071a9e5da8dfa05fa0d27d65a1666a
+JJJJ

@@ -1,0 +1,51 @@
+{% extends "jjnofish/layout.html" %}
+{% load static %}
+{% block body %}
+
+    <div class="main">
+        <h1>Document Editor</h1>
+        <form method="post" enctype="multipart/form-data" name= "Doc_form" action="{% url 'jj_no_fish' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>
+                        <h2>No fish allowed! >w< <p style="font-size:80">&#128110;</p></h2>
+                        <input type="file" name="document" accept=".docx">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Replace Words</h2>
+                        <label for="old_word">Old Word:</label>
+                        <input type="text" name="old_word" value="{{ old_word }}"><br><br>
+                        <label for="new_word">New Word:</label>
+                        <input type="text" name="new_word" value="{{ new_word }}"><br><br>
+                        <input type="submit" name="action" value="Upload & Replace">
+                    </td>
+                </tr>
+                {% if upload_completed %}
+                <tr>
+                    <td colspan="2">
+                        <p style="color: green;">File upload and replace successful!</p>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2">
+                        <h2>Export Document</h2>
+
+                        <input type="submit" name="action" value="Export">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+{% comment %}
+{% block script %}
+    <script src="{% static 'network/newlikes.js' %}"></script>
+{% endblock %} {% endcomment %}
+
+{% endblock %}
+
+

@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+head
+tail
+head
+tail
+=======
+head
+tail
+head
+tail
+>>>>>>> 6e4bf84439071a9e5da8dfa05fa0d27d65a1666a

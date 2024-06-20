@@ -1,0 +1,86 @@
+#post_img{
+
+
+max-width:40%;
+max-height:40%;
+
+}
+
+#img_url{
+
+width:40%;
+
+}
+
+.creatPost{
+
+
+border: 2px;
+border-color: lightblue;
+border-style: double;
+padding: 20px;
+margin: 20px;
+
+}
+
+
+.posts{
+
+    border: 2px;
+    border-color: lightblue;
+    border-style: double;
+    padding: 20px;
+    margin: 20px;
+    max-height:10%;
+
+
+    }
+
+#profile_link{
+
+font-size:30px;
+font-style: bold;
+
+}
+
+.profile_page{
+
+    padding: 20px;
+}
+
+#follow_button{
+
+
+    background-color: lightpink;
+}
+
+
+.pagination{
+    margin: auto;
+    width: 10%;
+
+}
+
+
+div[id^="old_content_"]{
+    font-size:20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family:Poppins;
+
+}
+
+
+.following_error{
+    text-align: center;
+    margin: 30px;
+    font-size: 40px;
+    color: lightpink;
+
+}
+
+
+#profile_link{
+    font-weight: bold;
+    font-size:23px;
+}

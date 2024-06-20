@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Create New Listing</h2>
+    <div>
+        {% if user.is_authenticated %}
+        <form action="{% url 'create_listing' %}" method="post" name="create_listing_form">
+            {% csrf_token %}
+            <div class="form-group">
+                Item Name: <br>
+                <input autofocus class="form-control" type="text" name="title">
+                Starting Bid:  <br>
+                <input class="form-control" type="number" name="starting_bid" placeholder="00.00">
+                Category: <br>
+                <input class="form-control" type="text" name="category">
+                Description: <br>
+            <!--<input class="form-control" type="datetime-local" name="created_time">-->
+                <input class="form-control" type="text" name="description">
+                Image Link Url: <br>
+                <input class="form-control" type="url" name="image_url">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Create">
+        </form>
+        {% endif %}
+    </div>
+
+{% endblock %}

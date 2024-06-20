@@ -1,0 +1,1 @@
+SELECT id, title, air_date FROM episodes WHERE topic LIKE "python" or "SQL";

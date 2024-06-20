@@ -1,0 +1,13 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Existing Categories</h2>
+    {% if user.is_authenticated %}
+
+    {% for i in view.listings %}
+    <li> {{ i.category }}</li>
+    {% endfor %}
+    {% endif %}
+
+
+{% endblock %}

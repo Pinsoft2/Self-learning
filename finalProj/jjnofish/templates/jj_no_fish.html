@@ -1,0 +1,129 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>JJ No Fish</title>
+        <style>
+
+            input.doc_button_original {
+              display: flex;
+              min-height: 44px;
+              background: #ffc9f5;
+              color: darkblue;
+              font-weight: 400;
+              width:flex;
+              line-height: normal;
+              justify-content: center;
+              border: 3px solid #ff75e6;
+              box-shadow: none;
+              border-radius: 24px;
+              margin: 0 auto;
+            }
+
+            table {
+              margin:10px;
+              padding: 50px;
+              background: #ffc9f5;
+              color: black;
+            }
+
+            .main {
+              padding:200px 0;
+            }
+
+
+            </style>
+
+    </head>
+
+    <body class="main">
+      <div align="center">
+        <form  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" >
+            <input type="submit" name="Import" value="Import" class="doc_button_original">
+              {% if url %}
+              <p> Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
+              {% endif %}
+            <br>
+            <table class="table" align="center">
+                  <td>original word: </td>
+                  <td><input type="text" name="original_word" id="original_word" placeholder="fish"></td>
+                  <td>replaced into: </td>
+                  <td><input type="text" name="replacement" id="replacement" placeholder="universe"></td>
+            </table>
+            <br>
+              <input type="submit" name="btnI" value="Save and Generate Document" class="doc_button_original">
+        </form>
+
+
+
+      </div>
+    </body>
+</html>
+  -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Document Editor</title>
+      <style>
+          input.doc_button_original {
+              display: flex;
+              min-height: 44px;
+              background: #ffc9f5;
+              color: darkblue;
+              font-weight: 400;
+              width: flex;
+              line-height: normal;
+              justify-content: center;
+              border: 3px solid #ff75e6;
+              box-shadow: none;
+              border-radius: 24px;
+              margin: 0 auto;
+          }
+
+          table {
+              margin: 10px;
+              padding: 50px;
+              background: #ffc9f5;
+              color: black;
+          }
+
+          .main {
+              padding: 200px 0;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="main">
+          <h1>Document Editor</h1>
+          <form method="post" enctype="multipart/form-data" action="{% url 'jj_no_fish' %}">
+              {% csrf_token %}
+              <table>
+                  <tr>
+                      <td>
+                          <h2>Upload Document</h2>
+                          <input type="file" name="document" accept=".docx, .pdf">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <h2>Replace Words</h2>
+                          <label for="old_word">Old Word:</label>
+                          <input type="text" name="old_word"><br><br>
+                          <label for="new_word">New Word:</label>
+                          <input type="text" name="new_word"><br><br>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <h2>Export Document</h2>
+                          <input class="doc_button_original" type="submit" name="action" value="Upload & Replace">
+                          <input class="doc_button_original" type="submit" name="action" value="Export">
+                      </td>
+                  </tr>
+              </table>
+          </form>
+      </div>
+  </body>
+  </html>

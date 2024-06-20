@@ -1,0 +1,73 @@
+textarea {
+    min-height: 400px;
+}
+
+
+table {
+    border: 3px solid;
+    width: 100%;
+}
+/*
+#emails-view #emailList {
+    border: 5px solid; !important;
+} */
+
+/* #eachEmail{
+    cursor: pointer
+} */
+
+
+#email_body {
+    padding: 5px; /* Add padding around the email body */
+  }
+
+
+th, td {
+    border: 1px solid;
+    padding:10px;
+    /* cursor: pointer; */
+}
+
+
+#archiveButton{
+
+    font-size:15px;
+    color: black;
+    margin-top: 20px;
+    background-color:lightgrey;
+    padding: 10px 18px;
+    margin-right:20px;
+
+}
+
+
+#replyButton{
+
+    font-size:15px;
+    color: black;
+    background-color: #FFE7EE;
+    margin-top: 20px;
+    padding: 10px 18px;
+
+}
+
+
+#submission_message {
+
+    margin-left:140px;
+    margin-top:20px;
+    font-size:20px;
+    color:hotpink;
+    animation: example1 10s linear;
+/* Move it (define the animation) */
+    @keyframes #submission_message {
+    0%   {
+    transform: translateX(200%);
+    }
+    100% {
+    transform: translateX(0%);
+    }
+}
+}
+
+

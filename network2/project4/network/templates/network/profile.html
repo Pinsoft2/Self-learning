@@ -1,0 +1,66 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+
+{% comment %} list of posts for people that users follow {% endcomment %}
+    <div class="profile_page">
+        {% if user.is_authenticated %}
+
+        {% for post in posts %}
+            {% if forloop.first %}
+                <h3>{{post.user}}</h3>
+            {% endif %}
+        {% endfor %}
+                <tr>
+                    {% comment %} Display the number of followers the user has, as well as the number of people that the user follows. {% endcomment %}
+                    <td>
+                        Followers:
+                    </td>
+                    <td>  {{follower_count}} </td>
+                    <td>
+                        Following:
+                    </td>
+                    <td> {{following_count}} </td>
+            <table>
+
+                {% if user != profile_user %}
+
+                            {% if not following_status %}
+                                <form action="{% url 'follow' user_id=profile_user.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" id="follow_button">Follow</button>
+                                </form>
+                            {% endif %}
+
+                            {% if following_status %}
+                                <form action="{% url 'unfollow' user_id=profile_user.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" id="unfollow_button">Unfollow</button>
+                                </form>
+                            {% endif %}
+
+
+                    {% endif %}
+
+                    {% comment %} Display all of the posts for that user, in reverse chronological order. {% endcomment %}
+                    {% for post in posts %}
+                        <ul class="posts">
+                            <img src="{{ post.image_url }}" id="post_img"><br>
+                            {{post.new_post_content}}<br>
+                            Posted on: {{post.created_time}}<br>
+                            <button id="like_button_{{post.id}}">&#10084;</button>
+                            <span id="like_count_{{ post.id }}"> {{post.liked_by.count}} </span>
+                            <br>
+                        </ul>
+                    {% endfor %}
+
+                    {% comment %} For any other user who is signed in, this page should also display a “Follow” or “Unfollow” button that will let the current user toggle whether or not they are following this user’s posts. Note that this only applies to any “other” user: a user should not be able to follow themselves. {% endcomment %}
+
+
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}
+

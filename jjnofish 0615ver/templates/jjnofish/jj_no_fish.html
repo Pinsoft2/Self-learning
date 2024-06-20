@@ -1,0 +1,71 @@
+{% extends "jjnofish/layout.html" %}
+{% load static %}
+{% block body %}
+
+    <div class="main">
+        <h1>Document Editor</h1>
+
+        {% if not user.is_authenticated %}
+
+        Please <a href="/login">login</a> or <a href="/register">create an account</a> :)
+
+        {% endif %}
+
+        {% if user.is_authenticated %}
+
+        <form method="post" enctype="multipart/form-data" name= "Doc_form" action="{% url 'jj_no_fish' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>
+                        <h2 class="rainbow rainbow_text_animated">No fish allowed! >w< <p style="font-size:80">&#128110;</p></h2>
+                        <input type="file" name="document" accept=".docx">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Replace Words</h2>
+                        <table id="data_table" >
+                        <tr class="word-pair">
+                            <td>
+                        <label for="old_word">Old Word:</label></td>
+                        <td><input type="text" name="old_word" value="{{ old_word }}"></td></tr>
+                        <tr class="word-pair">
+                        <td>
+                        <label for="new_word">New Word:</label></td>
+                        <td><input type="text" name="new_word" value="{{ new_word }}"></td></tr>
+                        </table>
+                        {% comment %} <label for="caseSensitive">Case Sensitive:</label> {% endcomment %}
+                        {% comment %} <input type="checkbox" name="caseSensitive"><br><br> {% endcomment %}
+                        <button type="button" id="add">Add</button><br><br>
+                        <input type="submit" name="action" value="Upload & Replace">
+                    </td>
+                </tr>
+                {% if upload_completed %}
+                <tr>
+                    <td colspan="2" id="success_message">
+                        <p style="color: green;">File upload and replace successful!</p>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2">
+                        <h2>Export Document</h2>
+
+                        <input type="submit" name="action" value="Export"><br>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        {% endif %}
+    </div>
+
+
+{% block script %}
+    <script src="{% static 'jjnofish/index.js' %}" ></script>
+{% endblock %}
+
+{% endblock %}
+
+

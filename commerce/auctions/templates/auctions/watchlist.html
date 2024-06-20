@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+    <h2> Watchlist</h2>
+    <table>
+    {% for listing in listings %}
+    <tr>
+
+    <img style="width:300px; margin-left:10px;" src="{{ listing.image_url }}" ><br>
+    <ol>
+    <h3>Name: {{listing.title}}</h3>
+    Owner: {{ listing }}<br>
+    Starting bid:   {{ listing.starting_bid}}<br>
+    Category: {{ listing.category}}<br>
+    Created Time: {{ listing.created_time}}<br>
+    Description: {{ listing.description}}
+        </ol>
+    </tr>
+    {% endfor %}
+    <table>
+
+{% endblock %}

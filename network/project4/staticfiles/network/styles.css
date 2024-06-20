@@ -1,0 +1,57 @@
+#post_img{
+
+
+max-width:40%;
+
+}
+
+
+.creatPost{
+
+
+border: 2px;
+border-color: lightblue;
+border-style: double;
+padding: 20px;
+margin: 20px;
+
+}
+
+
+.posts{
+
+
+    border: 2px;
+    border-color: lightblue;
+    border-style: double;
+    padding: 20px;
+    margin: 20px;
+
+
+    }
+
+#profile_link{
+
+font-size:30px;
+font-style: bold;
+
+}
+
+.profile_page{
+
+    padding: 20px;
+}
+
+#follow_button{
+
+
+    background-color: lightpink;
+}
+
+
+.pagination{
+
+    margin: auto;
+    width: 50%;
+
+}

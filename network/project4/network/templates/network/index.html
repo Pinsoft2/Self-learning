@@ -1,0 +1,86 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+{% if user.is_authenticated %}
+    <div class="creatPost">
+
+        <h4>Create New Post</h4>
+        <form action="{% url 'create_post' %}" method="post" name="create_post_form">
+            {% csrf_token %}
+            <textarea placeholder="New post" name="new_post_content" rows="10" cols="120"></textarea><br>
+            Image Link URL: <br>
+            <input class="form-control" type="url" name="image_url" id="img_url"><br>
+            <button type="submit" class="btn btn-primary"> Create Post </button>
+        </form>
+
+    </div>
+{% comment %} list of posts for people that users follow {% endcomment %}
+    <div class="PostSummary">
+        {% if user.is_authenticated %}
+            {% for post in page_obj %}
+            <ul class="posts">
+            <a id="profile_link" href="{% url 'profile' user_id=post.user_id %}" >{{post.user}}</a>
+            <br>
+            <img src="{{ post.image_url }}" id="post_img"><br>
+            <div id="old_content_{{post.id}}">{{post.new_post_content}}</div>
+
+
+            {% comment %} add edit button {% endcomment %}
+            {% comment %} add condition that this user need to be equal to user {% endcomment %}
+            {% if user.id == post.user_id %}
+                <button id="edit_button_{{post.id}}" class="btn btn-primary">Edit</button> <br>
+                <form action="{% url 'edit_post' post_id=post.id %}" method="post" id="edit_form_{{post.id}}" name="edit_form" style="display: none;" >
+                    {% csrf_token %} <br>
+                    <textarea name="new_post_content"> {{post.new_post_content}} </textarea> <br>
+                    <button type="submit" class="btn btn-success" id="save_button_{{post.id}}"> Save </button>
+                </form>
+            {% endif %}
+
+            <br>
+            Posted on: {{post.created_time}}
+            <form method="post" name="like_form" id="like_form">
+                {% csrf_token %}
+                <button id="like_button_{{post.id}}" data-post-id="{{post.id}}" data-user-id="{{user.id}}" data-toggle="tooltip" data-placement="bottom" title="like">&#10084;</button>
+                <span id="like_count_{{ post.id }}"> {{post.liked_by.count}} </span>
+            </form>
+
+            <br>
+        </ul>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endif %}
+
+{% if not user.is_authenticated %}
+
+<div class="following_error"> Please log in or register an account. </div>
+
+{% endif %}
+
+    {% block script %}
+        <script src="{% static 'network/likes.js' %}"></script>
+    {% endblock %}
+
+{% endblock %}
