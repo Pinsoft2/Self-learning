@@ -83,12 +83,6 @@ def get_replacelist():
 #     # with open(sys.argv[-2]) as before:
 #     #             excel = csv.DictReader(before)
 #     #             for row in excel:
-# """
-# reference on Google doc api
-# https://towardsdatascience.com/how-to-load-the-content-of-a-google-document-in-python-1d23fd8d8e52
-# """
-
-#https://docs.google.com/document/d/1WqlNW7rjKalqSmG1zHXnfeips_4x16Su8Z98c6DSuHc/edit?usp=sharing
 
 
 #now in the backend I'll create a demo goodle doc and download it to my txt file
