@@ -124,11 +124,11 @@ with open('my_doc.txt', 'w') as f:
 df = pd.DataFrame(text,columns=['text'])
 
 def scan(text):
-"""
-scan for potential match of the word and replace them with the matched new value
 
-look thru every line to scan thru every pair of replacements
-"""
+# scan for potential match of the word and replace them with the matched new value
+
+# look thru every line to scan thru every pair of replacements
+
     text = df
     for _in text:
         for dislikeword in avoid:
