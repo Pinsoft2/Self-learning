@@ -90,7 +90,6 @@ def get_replacelist():
 
 #https://docs.google.com/document/d/1WqlNW7rjKalqSmG1zHXnfeips_4x16Su8Z98c6DSuHc/edit?usp=sharing
 
-#auth key: {"installed":{"client_id":"111557771937-927la7oqn1bj3sgkt486de6qhbpe69md.apps.googleusercontent.com","project_id":"jj-nofish","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"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","redirect_uris":["http://localhost"]}}
 
 #now in the backend I'll create a demo goodle doc and download it to my txt file
 
