@@ -1,0 +1,5 @@
+1. If songs.db contains the top 100 songs of one listener from 2018, how would you characterize their audio aura?
+
+Purple - high energy, high danceability, mid-fast tempo, a true pop music fan just like me.
+
+2.  There are several other elements weren't considered, such as number of play backs, how much the production has advertised so these music were on auto play instead of being actually selected by the user; has it been liked/saved to a song list, etc.

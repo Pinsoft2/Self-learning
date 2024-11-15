@@ -1,0 +1,23 @@
+sort1 uses: Bubble sort
+
+
+
+random50000: 5.483s
+sorted50000: 0.431s
+reversed50000: 4.851s
+
+sort2 uses: Merge sort
+
+random50000: 0.686s
+sorted50000: 0.454s
+reversed50000:0.849s
+
+How do you know?: Merge sort is just always the fastest especially at larger scales.
+
+sort3 uses: Selection sort
+
+
+
+random50000: 2.550ss
+sorted50000: 2.204s
+reversed50000:2.407s
